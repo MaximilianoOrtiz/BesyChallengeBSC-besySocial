@@ -1,4 +1,4 @@
-package com.bcz_challenge.socialBesy.config;
+package com.bczchallenge.socialbesy.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.bcz_challenge.socialBesy;
+package com.bczchallenge.socialbesy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -8,10 +8,10 @@
 		<version>2.7.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bcz_challenge</groupId>
-	<artifactId>socialBesy</artifactId>
+	<groupId>com.bczchallenge</groupId>
+	<artifactId>socialbesy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>socialBesy</name>
+	<name>socialbesy</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 

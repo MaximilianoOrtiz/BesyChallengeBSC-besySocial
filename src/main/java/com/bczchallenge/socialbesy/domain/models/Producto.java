@@ -1,4 +1,14 @@
 package com.bczchallenge.socialbesy.domain.models;
 
-public class Producto {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name="PRODUCTO")
+public class Producto implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
 }

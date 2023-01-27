@@ -20,7 +20,7 @@ public class SpringFoxSwagger {
     public Docket getDocket(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com/bcz_challenge/socialBesy/controller"))
+                .apis(RequestHandlerSelectors.basePackage("com/bczchallenge/socialbesy/controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());

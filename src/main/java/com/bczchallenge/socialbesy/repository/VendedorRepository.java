@@ -1,6 +1,6 @@
 package com.bczchallenge.socialbesy.repository;
 
-import com.bczchallenge.socialbesy.domain.mapper.models.Comprador;
+import com.bczchallenge.socialbesy.domain.models.Comprador;
 
 public interface VendedorRepository  extends  UsuarioRepository{
 

@@ -1,10 +1,8 @@
-package com.bczchallenge.socialbesy.domain.mapper.models;
+package com.bczchallenge.socialbesy.domain.models;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 @Data

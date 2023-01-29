@@ -1,5 +1,5 @@
 
-package com.bczchallenge.socialbesy.domain.mapper.models;
+package com.bczchallenge.socialbesy.domain.models;
 
 import lombok.*;
 

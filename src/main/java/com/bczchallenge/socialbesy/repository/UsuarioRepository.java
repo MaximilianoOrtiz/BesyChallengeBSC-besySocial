@@ -1,4 +1,8 @@
 package com.bczchallenge.socialbesy.repository;
 
-public class UsuarioRepository {
+import com.bczchallenge.socialbesy.domain.mapper.models.Vendedor;
+
+public interface UsuarioRepository {
+    Iterable<Vendedor> findVendedoresByIdUsuario(Integer usuarioId);
+
 }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 
 @Data
@@ -13,12 +15,28 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario {
+public abstract class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nombre_de_usuario")
     private String nombreDeUsuario;
+
+    @ManyToMany(
+            mappedBy = "seguidores",
+            fetch = FetchType.LAZY
+    )
+    private Set<Vendedor> seguidos;
 }
+/*
+
+    @OneToMany(
+            mappedBy = "usuario",
+            fetch = FetchType.LAZY
+    )
+   //private Set<Publicacion> publicaciones;
+
+}
+*/

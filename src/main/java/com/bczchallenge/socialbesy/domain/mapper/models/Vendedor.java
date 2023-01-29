@@ -15,6 +15,7 @@ public class Vendedor extends Usuario{
 
     //@Column(name = "usuarios_seguidores")
 
+
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {
@@ -23,11 +24,11 @@ public class Vendedor extends Usuario{
             }
     )
     @JoinTable(
-            name = "vendedor_comprador",
+            name = "vendedor_usuario",
             joinColumns = @JoinColumn(name = "vendedor_id"),
-            inverseJoinColumns = @JoinColumn(name = "comprador_id")
+            inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    private Set<Comprador> compradores;
+    private Set<Usuario> seguidores;
 
     @OneToMany(
             mappedBy = "vendedor",

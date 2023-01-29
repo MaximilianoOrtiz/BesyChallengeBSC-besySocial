@@ -10,14 +10,16 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "COMPRADOR")
-@PrimaryKeyJoinColumn(name = "vendedor_id")
+@PrimaryKeyJoinColumn()
 public class Comprador extends Usuario{
 
     //@Column(name = "vendedores_seguidos")
+
+/*
     @ManyToMany(
             mappedBy = "compradores",
             fetch = FetchType.LAZY
     )
-    private Set<Vendedor> vendedores;
+    private Set<Vendedor> vendedores;*/
 
 }

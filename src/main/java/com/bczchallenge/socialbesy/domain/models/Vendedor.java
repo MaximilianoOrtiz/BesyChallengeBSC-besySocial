@@ -9,8 +9,7 @@ import java.util.Set;
 
 @Data
 @Entity()
-@Table(name = "VENDEDOR")
-@PrimaryKeyJoinColumn()
+//@Table(name = "VENDEDORES")
 public class Vendedor extends Usuario{
 
     //@Column(name = "usuarios_seguidores")
@@ -19,20 +18,20 @@ public class Vendedor extends Usuario{
             fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
-                    CascadeType.MERGE
             }
     )
     @JoinTable(
-            name = "vendedor_usuario",
+            name = "vendedor_comprador",
             joinColumns = @JoinColumn(name = "vendedor_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id")
+            inverseJoinColumns = @JoinColumn(name = "comprador_id")
     )
-    private Set<Usuario> seguidores;
+    private Set<Comprador> compradores;
 
     @OneToMany(
             mappedBy = "vendedor",
             fetch = FetchType.LAZY
     )
+    @Column(name = "publicaciones")
     private Set<Publicacion> publicaciones;
 
 }

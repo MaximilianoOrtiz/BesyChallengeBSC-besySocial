@@ -6,5 +6,4 @@ import com.bczchallenge.socialbesy.domain.models.Vendedor;
 
 public interface UsuarioInterface {
 
-    Iterable<Usuario> getSeguidos(Integer usuarioId);
 }

@@ -1,15 +1,19 @@
 
 package com.bczchallenge.socialbesy.domain.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Data
 @NoArgsConstructor
 @Entity
-@Table(name = "PUBLICACION")
+@Table(name = "PUBLICACIONES")
+@AllArgsConstructor
 public class Publicacion implements Serializable {
 
     @Id
@@ -30,7 +34,7 @@ public class Publicacion implements Serializable {
     private boolean enPromocion;
 
     @ManyToOne(
-            optional = true,
+            optional = false,
             fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -40,15 +44,6 @@ public class Publicacion implements Serializable {
     @JoinColumn(name = "vendedor_id")
     private Vendedor vendedor;
 
-
-
-    public Publicacion(Categoria categoria, double precio, double precioDescuento, double descuento, boolean enPromocion) {
-        this.categoria = categoria;
-        this.precio = precio;
-        this.precioDescuento = precioDescuento;
-        this.descuento = descuento;
-        this.enPromocion = enPromocion;
-    }
 
     @PrePersist
     private void antesDePersistir(){

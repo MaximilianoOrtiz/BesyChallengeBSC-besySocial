@@ -4,13 +4,13 @@ insert into categoria (descripcion) values('Escritorio');
 insert into categoria (descripcion) values('Computacion');
 
 --PRODUCTO
-insert into producto (color, marca, producto_nombre,observaciones, tipo) values
+/*insert into producto (color, marca, producto_nombre,observaciones, tipo) values
 ('Red & Black', 'Racer', 'Silla Gamer', 'Special Edition', 'Gamer'),
 ('Blanca', 'Gafa', 'Heladera', 'Special Edition', 'Acero inoxidable'),
-('Plata', 'Asus', 'Notebook ASUS x515EA', 'Special Edition', '');
+('Plata', 'Asus', 'Notebook ASUS x515EA', 'Special Edition', '');*/
 
 
---USUARIOS
+/*--USUARIOS
 insert into comprador (nombre_de_usuario) values
 ('User_A'),
 ('User_B'),
@@ -21,7 +21,7 @@ insert into comprador (nombre_de_usuario) values
 
 insert into vendedor (nombre_de_usuario) values
 ('Vendedor_A');
-
+*/
 --
 --insert into vendedor_usuario (vendedor_id, usuario_id) values
 --(1,1),

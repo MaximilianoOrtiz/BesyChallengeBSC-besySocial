@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/publicacion")
 public class PublicacionController {
-
+/*
     @PostMapping
     ResponseEntity publicar(@PathVariable Publicacion publicacion){
         return null;
     }
+
+ */
 }

@@ -1,4 +1,4 @@
-/*
+
 package com.bczchallenge.socialbesy.controller;
 
 import com.bczchallenge.socialbesy.domain.models.Publicacion;
@@ -16,7 +16,7 @@ import java.util.Map;
 @RequestMapping("/producto")
 @RequiredArgsConstructor
 public class ProductoController {
-
+/*
    // private final ProductoInterface productoInterface;
     private final PublicacionInterface publicacionInterface;
 
@@ -69,5 +69,8 @@ public class ProductoController {
     ResponseEntity promocion(@PathVariable("userId")Integer userId){
         return null;
     }
+
+
+ */
 }
-*/
+

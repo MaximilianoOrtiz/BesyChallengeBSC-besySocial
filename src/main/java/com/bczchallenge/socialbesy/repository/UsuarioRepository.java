@@ -9,11 +9,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 //@Repository("usuarioRepository")
 //@Primary
 @NoRepositoryBean
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 
-    @Query(value = "select u from Usuario where u.id = ?1")
-    Iterable<Usuario> findSeguidosByIdUsuario(Integer usuarioId);
+    @Override
+    Optional<Usuario> findById(Integer integer);
 }

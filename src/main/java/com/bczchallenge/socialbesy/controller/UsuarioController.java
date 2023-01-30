@@ -1,5 +1,9 @@
+/*
 package com.bczchallenge.socialbesy.controller;
 
+import com.bczchallenge.socialbesy.domain.models.Usuario;
+import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +14,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
+
+
+    @Autowired
+    private UsuarioInterface usuarioServices;
 
     @PostMapping("/{userID}/seguir/{userIDASeguir}")
     ResponseEntity seguir(@PathVariable("userID") Integer userID, @PathVariable("userIDASeguir")Integer userIDASeguir){
@@ -30,7 +38,7 @@ public class UsuarioController {
         try{
             Map<String, Object> mensaje= new HashMap<String, Object>();
 
-            Integer data= null;//TODO LLAMADA A LA IMPLEMENTACION;
+            Iterable<Usuario> data= usuarioServices.getSeguidos(id);//TODO LLAMADA A LA IMPLEMENTACION;
             mensaje.put("Success", true);
             mensaje.put("Data", data);
 
@@ -82,3 +90,4 @@ public class UsuarioController {
         }
     }
 }
+*/

@@ -15,6 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 public abstract class Usuario implements Serializable {
 
     @Id
@@ -23,12 +24,12 @@ public abstract class Usuario implements Serializable {
 
     @Column(name = "nombre_de_usuario")
     private String nombreDeUsuario;
-
+/*
     @ManyToMany(
             mappedBy = "seguidores",
             fetch = FetchType.LAZY
     )
-    private Set<Vendedor> seguidos;
+    private Set<Vendedor> seguidos;*/
 }
 /*
 

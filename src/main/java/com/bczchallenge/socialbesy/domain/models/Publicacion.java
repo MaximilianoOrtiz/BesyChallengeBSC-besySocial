@@ -29,7 +29,7 @@ public class Publicacion implements Serializable {
     @Column(name = "en_promocion")
     private boolean enPromocion;
 
-    /*@ManyToOne(
+    @ManyToOne(
             optional = true,
             fetch = FetchType.LAZY,
             cascade = {
@@ -37,8 +37,7 @@ public class Publicacion implements Serializable {
                     CascadeType.MERGE
             }
     )
-    @JoinColumn(name = "vendedor_id")*/
-    @OneToOne
+    @JoinColumn(name = "vendedor_id")
     private Vendedor vendedor;
 
 

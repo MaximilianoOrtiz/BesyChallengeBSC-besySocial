@@ -15,7 +15,6 @@ public class Vendedor extends Usuario{
 
     //@Column(name = "usuarios_seguidores")
 
-
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {

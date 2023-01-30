@@ -1,3 +1,4 @@
+/*
 package com.bczchallenge.socialbesy.controller;
 
 import com.bczchallenge.socialbesy.domain.models.Publicacion;
@@ -16,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ProductoController {
 
-    private final ProductoInterface productoInterface;
+   // private final ProductoInterface productoInterface;
     private final PublicacionInterface publicacionInterface;
 
     @PostMapping("/publicar")
@@ -69,3 +70,4 @@ public class ProductoController {
         return null;
     }
 }
+*/

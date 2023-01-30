@@ -3,6 +3,7 @@ package com.bczchallenge.socialbesy.domain.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -20,4 +21,11 @@ public class Comprador extends Usuario{
     )
     private Set<Vendedor> vendedores;*/
 
+    @ManyToMany(
+            mappedBy = "seguidores",
+            fetch = FetchType.LAZY
+    )
+    private Set<Usuario> seguidos;
 }
+
+

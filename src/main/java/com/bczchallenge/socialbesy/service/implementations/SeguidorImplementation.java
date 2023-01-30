@@ -36,7 +36,7 @@ public class SeguidorImplementation implements SeguidorInterfaces {
         Iterable<Usuario>seguidos= repository.findSeguidosByIdSeguidor(seguidorId);
         List<UsuarioDTO> seguidosDto= new ArrayList<UsuarioDTO>();
         seguidos.forEach(usu -> seguidosDto.add(usuarioMapper.mapUsuario(usu)));
-        log.info("FIN --> getSeguidos("+seguidorId+")");
+        log.info("FIN --> getSeguidos(). response: "+(seguidosDto.size()));
         return seguidosDto;
     }
 

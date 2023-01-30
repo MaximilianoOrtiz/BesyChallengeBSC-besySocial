@@ -38,12 +38,12 @@ public class UsuarioResController {
         Map<String, Object> mensaje= new HashMap<String, Object>();
         try{
             log.info("Inicio metodo quienMeSigue ("+userID+")");
-            List<SeguidorDTO> data = (List<SeguidorDTO>) usuarioServices.getListadosSeguidores(userID);//TODO LLAMADA A LA IMPLEMENTACION;
+            UsuarioDTO data = usuarioServices.getListadosSeguidores(userID);//TODO LLAMADA A LA IMPLEMENTACION;
             //List<CompradorDTO> dtos = new ArrayList<>();
             //data.forEach(usuario -> dtos.add(mapper.mapComprador((Comprador)usuario)));
 
             log.info(String.valueOf((data != null)));
-            log.info(String.valueOf(data.get(0).getNombre_Usuario()));
+            //log.info(String.valueOf(data.get(0).getNombre_Usuario()));
 
             // data.forEach(usuario -> log.info(((Comprador)usuario).toString()));
             mensaje.put("Success", true);
@@ -56,11 +56,26 @@ public class UsuarioResController {
 
     }
 
+    @GetMapping("/{userID}/sigo/listado")
+    ResponseEntity aQuienSigo(@PathVariable(value= "userID") Integer userID){
+        try{
+            Map<String, Object> mensaje= new HashMap<String, Object>();
+
+            List<UsuarioDTO> data= (List<UsuarioDTO>) seguidorService.getSeguidos(userID);//TODO LLAMADA A LA IMPLEMENTACION;
+            mensaje.put("Success", true);
+            mensaje.put("Data", data);
+
+            return ResponseEntity.ok(mensaje);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/{userID}/sigo/listado?ordenar=?&desc=?")
     ResponseEntity aQuienSigo(@PathVariable("idUser") Integer idUser, @PathVariable("ordenar") String ordenar, @PathVariable("desc")String desc){
         Map<String, Object> mensaje= new HashMap<String, Object>();
         try{
-            List<UsuarioDTO> data= null;//TODO LLAMADA A LA IMPLEMENTACION;
+            List<UsuarioDTO> data= (List<UsuarioDTO>) seguidorService.getSeguidos(idUser);//TODO LLAMADA A LA IMPLEMENTACION;
             mensaje.put("Success", true);
             mensaje.put("Data", data);
 

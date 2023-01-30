@@ -4,6 +4,7 @@ import com.bczchallenge.socialbesy.domain.models.Seguidor;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,5 +16,6 @@ public class UsuarioDTO {
 
     private Integer idUser;
     private String nombre_Usuario;
+    List<SeguidorDTO> seguidores;
 
 }

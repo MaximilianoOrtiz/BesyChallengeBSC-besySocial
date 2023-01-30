@@ -13,7 +13,7 @@ public interface SeguidorMapper {
 
     @Mappings({
             @Mapping(source = "id", target = "idUser"),
-            @Mapping(source = "nombreDeUsuario", target = "nombre_Usuario")
+            @Mapping(source = "nombreDeUsuario", target = "nombre_Usuario"),
     })
     SeguidorDTO mapSeguidor(Seguidor seguidor);
 

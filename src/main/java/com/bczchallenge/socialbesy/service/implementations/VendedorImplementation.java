@@ -6,16 +6,18 @@ import com.bczchallenge.socialbesy.repository.VendedorRepository;
 import com.bczchallenge.socialbesy.service.interfaces.VendedorInterface;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
 public class VendedorImplementation implements VendedorInterface {
 
+    @Autowired
     @Qualifier("vendedorRepository")
-    private final UsuarioRepository repository;
+    private UsuarioRepository repository;
 
     @Override
     public Iterable<Usuario> getListadosSeguidores(Integer idVendedor) {

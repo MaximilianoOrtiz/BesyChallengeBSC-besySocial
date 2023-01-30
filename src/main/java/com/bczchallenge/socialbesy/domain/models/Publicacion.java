@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "PUBLICACIONES")
+@Table(name = "PUBLICACION")
 @AllArgsConstructor
 public class Publicacion implements Serializable {
 

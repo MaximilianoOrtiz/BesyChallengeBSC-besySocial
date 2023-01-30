@@ -18,11 +18,11 @@ import java.util.Collection;
 
 @Slf4j
 @Service
-@AllArgsConstructor
 public class CompradorImplementation implements CompradorInterfaces {
 
+    @Autowired
     @Qualifier("compradorRepository")
-    private final UsuarioRepository repository;
+    private UsuarioRepository repository;
 
     @Override
     @Transactional(readOnly = true)

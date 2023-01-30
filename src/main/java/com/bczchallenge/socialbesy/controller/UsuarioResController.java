@@ -1,11 +1,14 @@
 package com.bczchallenge.socialbesy.controller;
 
 import com.bczchallenge.socialbesy.domain.dto.SeguidorDTO;
+import com.bczchallenge.socialbesy.domain.dto.UsuarioDTO;
 import com.bczchallenge.socialbesy.domain.mapper.SeguidorMapper;
 import com.bczchallenge.socialbesy.domain.mapper.UsuarioMapper;
 import com.bczchallenge.socialbesy.domain.models.Seguidor;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
+import com.bczchallenge.socialbesy.service.interfaces.SeguidorInterfaces;
 import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +23,15 @@ import java.util.Map;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/usuarios")
 public class UsuarioResController {
 
-    @Autowired(required = true)
-    private UsuarioInterface usuarioServices;
+
+    private final UsuarioInterface usuarioServices;
+    private final SeguidorInterfaces seguidorService;
+
+
 
     @GetMapping("/{userID}/seguidores/listado")
     ResponseEntity quienMeSigue(@PathVariable(value= "userID") Integer userID){
@@ -53,7 +60,7 @@ public class UsuarioResController {
     ResponseEntity aQuienSigo(@PathVariable("idUser") Integer idUser, @PathVariable("ordenar") String ordenar, @PathVariable("desc")String desc){
         Map<String, Object> mensaje= new HashMap<String, Object>();
         try{
-            Integer data= null;//TODO LLAMADA A LA IMPLEMENTACION;
+            List<UsuarioDTO> data= null;//TODO LLAMADA A LA IMPLEMENTACION;
             mensaje.put("Success", true);
             mensaje.put("Data", data);
 

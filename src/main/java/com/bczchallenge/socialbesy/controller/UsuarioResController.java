@@ -1,5 +1,6 @@
 package com.bczchallenge.socialbesy.controller;
 
+import com.bczchallenge.socialbesy.domain.dto.SeguidorDTO;
 import com.bczchallenge.socialbesy.domain.mapper.SeguidorMapper;
 import com.bczchallenge.socialbesy.domain.mapper.UsuarioMapper;
 import com.bczchallenge.socialbesy.domain.models.Seguidor;
@@ -25,22 +26,18 @@ public class UsuarioResController {
     @Autowired(required = true)
     private UsuarioInterface usuarioServices;
 
-    @Autowired
-    private SeguidorMapper seguidorMapper;
-
-
     @GetMapping("/{userID}/seguidores/listado")
     ResponseEntity quienMeSigue(@PathVariable(value= "userID") Integer userID){
         try{
             log.info("Inicio metodo quienMeSigue ("+userID+")");
             Map<String, Object> mensaje= new HashMap<String, Object>();
 
-            List<Seguidor> data = (List<Seguidor>) usuarioServices.getListadosSeguidores(userID);//TODO LLAMADA A LA IMPLEMENTACION;
+            List<SeguidorDTO> data = (List<SeguidorDTO>) usuarioServices.getListadosSeguidores(userID);//TODO LLAMADA A LA IMPLEMENTACION;
             //List<CompradorDTO> dtos = new ArrayList<>();
             //data.forEach(usuario -> dtos.add(mapper.mapComprador((Comprador)usuario)));
 
             log.info(String.valueOf((data != null)));
-            log.info(String.valueOf(data.get(0).getNombreDeUsuario()));
+            log.info(String.valueOf(data.get(0).getNombre_Usuario()));
 
             // data.forEach(usuario -> log.info(((Comprador)usuario).toString()));
             mensaje.put("Success", true);

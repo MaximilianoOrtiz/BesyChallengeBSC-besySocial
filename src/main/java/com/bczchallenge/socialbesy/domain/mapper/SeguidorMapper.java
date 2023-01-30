@@ -12,10 +12,12 @@ import org.springframework.stereotype.Component;
 public interface SeguidorMapper {
 
     @Mappings({
-            @Mapping(source = "id" ,target = "idUser"),
+            @Mapping(source = "id", target = "idUser"),
             @Mapping(source = "nombreDeUsuario", target = "nombre_Usuario"),
-            @Mapping(source = "seguidos" , target = "seguidos")
+            @Mapping(source = "seguidos", target = "seguidos")
     })
     SeguidorDTO mapSeguidor(Seguidor seguidor);
+
 }
+
 

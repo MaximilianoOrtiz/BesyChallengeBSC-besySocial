@@ -1,6 +1,7 @@
 package com.bczchallenge.socialbesy.controller;
 
-import com.bczchallenge.socialbesy.domain.dto.CompradorDTO;
+import com.bczchallenge.socialbesy.domain.mapper.SeguidorMapper;
+import com.bczchallenge.socialbesy.domain.mapper.UsuarioMapper;
 import com.bczchallenge.socialbesy.domain.models.Seguidor;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
 import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
@@ -23,6 +24,9 @@ public class UsuarioResController {
 
     @Autowired(required = true)
     private UsuarioInterface usuarioServices;
+
+    @Autowired
+    private SeguidorMapper seguidorMapper;
 
 
     @GetMapping("/{userID}/seguidores/listado")
@@ -47,5 +51,4 @@ public class UsuarioResController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
 }

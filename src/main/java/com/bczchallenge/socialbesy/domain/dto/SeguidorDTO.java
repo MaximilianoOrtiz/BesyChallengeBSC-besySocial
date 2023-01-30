@@ -8,7 +8,7 @@ import java.util.Set;
 @Data
 public class SeguidorDTO {
 
-    int id;
-    String nombreUsuario;
+    int idUser;
+    String nombre_Usuario;
     Set<Usuario> seguidos;
 }

@@ -19,8 +19,8 @@ public class Seguidor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nombre_de_usuario")
-    private String nombreDeUsuario;
+    @Column(name = "nombre_de_seguidor")
+    private String nombreDeSeguidor;
 
     @ManyToMany(
             mappedBy = "seguidores"

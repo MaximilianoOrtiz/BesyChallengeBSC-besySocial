@@ -1,16 +1,10 @@
 package com.bczchallenge.socialbesy.controller;
 
-import com.bczchallenge.socialbesy.domain.dto.SeguidorDTO;
 import com.bczchallenge.socialbesy.domain.dto.UsuarioDTO;
-import com.bczchallenge.socialbesy.domain.mapper.SeguidorMapper;
-import com.bczchallenge.socialbesy.domain.mapper.UsuarioMapper;
-import com.bczchallenge.socialbesy.domain.models.Seguidor;
-import com.bczchallenge.socialbesy.domain.models.Usuario;
 import com.bczchallenge.socialbesy.service.interfaces.SeguidorInterfaces;
 import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

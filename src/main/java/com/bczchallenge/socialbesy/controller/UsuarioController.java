@@ -1,7 +1,7 @@
 /*
 package com.bczchallenge.socialbesy.controller;
 
-import com.bczchallenge.socialbesy.domain.dto.SeguidorDTO;
+import com.bczchallenge.socialbesy.domain.dto.DTOQuienMeSigue;
 //import com.bczchallenge.socialbesy.domain.models.Comprador;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
 import com.bczchallenge.socialbesy.service.interfaces.CompradorInterfaces;
@@ -46,7 +46,7 @@ public class UsuarioController {
             Map<String, Object> mensaje= new HashMap<String, Object>();
 
             List<Usuario> data = (List<Usuario>) usuarioServices.getSeguidos(userID);//TODO LLAMADA A LA IMPLEMENTACION;
-            List<SeguidorDTO> dtos = new ArrayList<>();
+            List<DTOQuienMeSigue> dtos = new ArrayList<>();
             //data.forEach(usuario -> dtos.add(mapper.mapComprador((Comprador)usuario)));
 
             log.info(String.valueOf((data != null)));

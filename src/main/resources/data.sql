@@ -15,7 +15,7 @@ insert into usuario(nombre_de_usuario) values
 ('Vendedor_A'),
 ('Vendedor_B');
 
-insert into seguidor (nombre_de_usuario) values
+insert into seguidor (nombre_de_seguidor) values
 ('User_A'),
 ('User_B'),
 ('User_C'),

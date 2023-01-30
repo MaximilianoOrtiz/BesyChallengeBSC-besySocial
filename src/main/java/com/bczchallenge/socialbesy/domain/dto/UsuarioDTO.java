@@ -1,11 +1,8 @@
 package com.bczchallenge.socialbesy.domain.dto;
 
-import com.bczchallenge.socialbesy.domain.models.Seguidor;
-import com.bczchallenge.socialbesy.domain.models.Usuario;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +13,6 @@ public class UsuarioDTO {
 
     private Integer idUser;
     private String nombre_Usuario;
-    List<SeguidorDTO> seguidores;
+    List<DTOQuienMeSigue> seguidores;
 
 }

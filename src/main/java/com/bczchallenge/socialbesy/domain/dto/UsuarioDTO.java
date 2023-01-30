@@ -15,6 +15,5 @@ public class UsuarioDTO {
 
     private Integer idUser;
     private String nombre_Usuario;
-    Set<Seguidor> seguidores;
 
 }

@@ -5,6 +5,7 @@ import com.bczchallenge.socialbesy.domain.mapper.SeguidorMapper;
 import com.bczchallenge.socialbesy.domain.mapper.UsuarioMapper;
 import com.bczchallenge.socialbesy.domain.models.Seguidor;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
+import com.bczchallenge.socialbesy.repository.SeguidorRepository;
 import com.bczchallenge.socialbesy.repository.UsuarioRepository;
 import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,7 @@ public class UsuarioImplementation implements UsuarioInterface {
 
     private final UsuarioRepository repository;
     private final SeguidorMapper seguidorMapper;
+    private final SeguidorRepository seguidorRepository;
 
     @Override
     public Iterable<SeguidorDTO> getListadosSeguidores(Integer idUsuario) {

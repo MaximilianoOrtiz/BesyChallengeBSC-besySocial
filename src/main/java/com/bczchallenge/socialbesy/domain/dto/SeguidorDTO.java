@@ -10,5 +10,4 @@ public class SeguidorDTO {
 
     int idUser;
     String nombre_Usuario;
-    Set<Usuario> seguidos;
 }

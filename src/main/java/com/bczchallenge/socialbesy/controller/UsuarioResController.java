@@ -28,10 +28,9 @@ public class UsuarioResController {
 
     @GetMapping("/{userID}/seguidores/listado")
     ResponseEntity quienMeSigue(@PathVariable(value= "userID") Integer userID){
+        Map<String, Object> mensaje= new HashMap<String, Object>();
         try{
             log.info("Inicio metodo quienMeSigue ("+userID+")");
-            Map<String, Object> mensaje= new HashMap<String, Object>();
-
             List<SeguidorDTO> data = (List<SeguidorDTO>) usuarioServices.getListadosSeguidores(userID);//TODO LLAMADA A LA IMPLEMENTACION;
             //List<CompradorDTO> dtos = new ArrayList<>();
             //data.forEach(usuario -> dtos.add(mapper.mapComprador((Comprador)usuario)));
@@ -43,9 +42,25 @@ public class UsuarioResController {
             mensaje.put("Success", true);
             mensaje.put("Data", data);
 
-            return ResponseEntity.ok(mensaje);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+        return ResponseEntity.ok(mensaje);
+
+    }
+
+    @GetMapping("/{userID}/sigo/listado?ordenar=?&desc=?")
+    ResponseEntity aQuienSigo(@PathVariable("idUser") Integer idUser, @PathVariable("ordenar") String ordenar, @PathVariable("desc")String desc){
+        Map<String, Object> mensaje= new HashMap<String, Object>();
+        try{
+            Integer data= null;//TODO LLAMADA A LA IMPLEMENTACION;
+            mensaje.put("Success", true);
+            mensaje.put("Data", data);
+
+
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok(mensaje);
     }
 }

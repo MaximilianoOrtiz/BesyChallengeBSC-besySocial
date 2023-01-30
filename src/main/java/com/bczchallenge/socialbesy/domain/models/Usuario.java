@@ -1,22 +1,20 @@
 package com.bczchallenge.socialbesy.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
 
-@Data
+@Getter
+@Setter
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "USUARIO")
-//@Inheritance(strategy = InheritanceType.JOINED)
-//@Inheritance(strategy= InheritanceType.JOINED)
 public  class Usuario implements Serializable {
 
     @Id
@@ -29,9 +27,9 @@ public  class Usuario implements Serializable {
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.ALL
- //                   CascadeType.PERSIST,
-//                    CascadeType.MERGE
+    //                CascadeType.ALL
+                    CascadeType.PERSIST,
+                     CascadeType.MERGE
             }
     )
     @JoinTable(
@@ -39,6 +37,7 @@ public  class Usuario implements Serializable {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "seguidor_id")
     )
+    @JsonIgnore
     private Set<Seguidor> seguidores;
 
     @OneToMany(
@@ -46,6 +45,7 @@ public  class Usuario implements Serializable {
             fetch = FetchType.LAZY
     )
     @Column(name = "publicaciones")
+    @JsonIgnore
     private Set<Publicacion> publicaciones;
 
 }

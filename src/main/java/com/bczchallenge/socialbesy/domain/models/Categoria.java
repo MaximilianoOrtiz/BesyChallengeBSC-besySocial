@@ -6,10 +6,11 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name= "CATEGORIA")
 public class Categoria implements Serializable {
 

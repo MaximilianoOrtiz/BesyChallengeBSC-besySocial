@@ -15,7 +15,6 @@ public interface UsuarioMapper {
     @Mappings({
             @Mapping(source = "id" ,target = "idUser"),
             @Mapping(source = "nombreDeUsuario", target = "nombre_Usuario"),
-            @Mapping(source = "seguidores", target = "seguidores")
     })
     UsuarioDTO mapUsuario(Usuario usuario);
 

@@ -1,13 +1,17 @@
 package com.bczchallenge.socialbesy.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "SEGUIDOR")
 public class Seguidor {
 
@@ -21,7 +25,7 @@ public class Seguidor {
     @ManyToMany(
             mappedBy = "seguidores"
     )
-    @JsonIgnoreProperties({"seguidores"})
+    @JsonIgnore
     private Set<Usuario> seguidos;
 
 }

@@ -1,23 +1,29 @@
 /*
 package com.bczchallenge.socialbesy.controller;
 
+import com.bczchallenge.socialbesy.domain.dto.CompradorDTO;
+//import com.bczchallenge.socialbesy.domain.models.Comprador;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
+import com.bczchallenge.socialbesy.service.interfaces.CompradorInterfaces;
 import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-
-    @Autowired
-    private UsuarioInterface usuarioServices;
+    @Autowired(required = true)
+    private CompradorInterfaces usuarioServices;
 
     @PostMapping("/{userID}/seguir/{userIDASeguir}")
     ResponseEntity seguir(@PathVariable("userID") Integer userID, @PathVariable("userIDASeguir")Integer userIDASeguir){
@@ -34,11 +40,18 @@ public class UsuarioController {
         }
     }
     @GetMapping("/{userID}/seguidores/listado")
-    ResponseEntity quienMeSigue(@PathVariable(value= "id") Integer id){
+    ResponseEntity quienMeSigue(@PathVariable(value= "userID") Integer userID){
         try{
+            log.info("Inicio metodo quienMeSigue ("+userID+")");
             Map<String, Object> mensaje= new HashMap<String, Object>();
 
-            Iterable<Usuario> data= usuarioServices.getSeguidos(id);//TODO LLAMADA A LA IMPLEMENTACION;
+            List<Usuario> data = (List<Usuario>) usuarioServices.getSeguidos(userID);//TODO LLAMADA A LA IMPLEMENTACION;
+            List<CompradorDTO> dtos = new ArrayList<>();
+            //data.forEach(usuario -> dtos.add(mapper.mapComprador((Comprador)usuario)));
+
+            log.info(String.valueOf((data != null)));
+            log.info(String.valueOf(data.size()));
+           // data.forEach(usuario -> log.info(((Comprador)usuario).toString()));
             mensaje.put("Success", true);
             mensaje.put("Data", data);
 

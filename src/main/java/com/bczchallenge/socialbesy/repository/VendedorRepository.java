@@ -1,7 +1,7 @@
+/*
 package com.bczchallenge.socialbesy.repository;
 
 
-import com.bczchallenge.socialbesy.domain.models.Comprador;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,3 +13,4 @@ public interface VendedorRepository  extends  UsuarioRepository{
     Iterable<Usuario> findSeguidoresByIdVendedor(Integer idVendedor);
 
 }
+*/

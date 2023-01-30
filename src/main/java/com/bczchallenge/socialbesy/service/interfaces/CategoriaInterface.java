@@ -1,4 +1,10 @@
+/*
 package com.bczchallenge.socialbesy.service.interfaces;
 
-public interface CategoriaInterface {
+import com.bczchallenge.socialbesy.domain.models.Usuario;
+
+public interface CategoriaInterface extends  UsuarioInterface {
+
+    Iterable<Usuario> getListadosSeguidores(Integer idVendedor);
 }
+*/

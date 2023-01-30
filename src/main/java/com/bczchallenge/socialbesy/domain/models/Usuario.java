@@ -15,8 +15,8 @@ import java.util.Set;
 @Entity
 @Table(name = "USUARIO")
 //@Inheritance(strategy = InheritanceType.JOINED)
-@Inheritance(strategy= InheritanceType.JOINED)
-public abstract class Usuario implements Serializable {
+//@Inheritance(strategy= InheritanceType.JOINED)
+public  class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,27 @@ public abstract class Usuario implements Serializable {
     @Column(name = "nombre_de_usuario")
     private String nombreDeUsuario;
 
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.ALL
+ //                   CascadeType.PERSIST,
+//                    CascadeType.MERGE
+            }
+    )
+    @JoinTable(
+            name = "usuario_seguidor",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "seguidor_id")
+    )
+    private Set<Seguidor> seguidores;
+
+    @OneToMany(
+            mappedBy = "usuario",
+            fetch = FetchType.LAZY
+    )
+    @Column(name = "publicaciones")
+    private Set<Publicacion> publicaciones;
 
 }
 

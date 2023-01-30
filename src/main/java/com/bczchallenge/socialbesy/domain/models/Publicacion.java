@@ -41,8 +41,8 @@ public class Publicacion implements Serializable {
                     CascadeType.MERGE
             }
     )
-    @JoinColumn(name = "vendedor_id")
-    private Vendedor vendedor;
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 
     @PrePersist

@@ -1,3 +1,4 @@
+/*
 package com.bczchallenge.socialbesy.service.implementations;
 
 import com.bczchallenge.socialbesy.domain.models.Comprador;
@@ -33,3 +34,4 @@ public class CompradorImplementation implements CompradorInterfaces {
 
 
 }
+*/

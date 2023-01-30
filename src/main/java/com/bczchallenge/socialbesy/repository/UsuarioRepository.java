@@ -2,12 +2,8 @@ package com.bczchallenge.socialbesy.repository;
 
 
 import com.bczchallenge.socialbesy.domain.models.Usuario;
-import com.bczchallenge.socialbesy.domain.models.Vendedor;
-import org.springframework.context.annotation.Primary;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

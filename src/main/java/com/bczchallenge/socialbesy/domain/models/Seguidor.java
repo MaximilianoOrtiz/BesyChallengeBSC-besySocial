@@ -25,7 +25,7 @@ public class Seguidor {
     @ManyToMany(
             mappedBy = "seguidores"
     )
-    @JsonIgnore
+    @JsonIgnoreProperties({"seguidores"})
     private Set<Usuario> seguidos;
 
 }

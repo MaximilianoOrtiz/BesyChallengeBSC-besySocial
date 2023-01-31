@@ -13,23 +13,30 @@ insert into producto (color, marca, producto_nombre,observaciones, tipo) values
 --USUARIOS
 insert into usuario(nombre_de_usuario) values
 ('Vendedor_A'),
-('Vendedor_B');
+('Vendedor_B'),
+('User_F');
 
 insert into seguidor (nombre_de_seguidor) values
 ('User_A'),
 ('User_B'),
 ('User_C'),
 ('User_D'),
-('User_E');
+('User_E'),
+('Vendedor_C'),
+('Vendedor_D');
 
---
+
+----
 insert into usuario_seguidor (usuario_id, seguidor_id) values
 (1,1),
 (1,2),
 (1,3),
 (2,4),
 (2,5),
-(1,4);
+(1,4),
+(3,6),
+(3,7);
+
 
 
 --

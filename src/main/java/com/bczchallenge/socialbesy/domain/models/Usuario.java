@@ -15,6 +15,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "USUARIO")
+//@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy= InheritanceType.JOINED)
 public  class Usuario implements Serializable {
 
     @Id
@@ -27,9 +29,9 @@ public  class Usuario implements Serializable {
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {
-    //                CascadeType.ALL
-                    CascadeType.PERSIST,
-                     CascadeType.MERGE
+                    CascadeType.ALL
+ //                   CascadeType.PERSIST,
+//                    CascadeType.MERGE
             }
     )
     @JoinTable(
@@ -37,7 +39,8 @@ public  class Usuario implements Serializable {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "seguidor_id")
     )
-    @JsonIgnore
+
+    @JsonIgnoreProperties({"seguidos"})
     private Set<Seguidor> seguidores;
 
     @OneToMany(
@@ -45,8 +48,12 @@ public  class Usuario implements Serializable {
             fetch = FetchType.LAZY
     )
     @Column(name = "publicaciones")
-    @JsonIgnore
+    @JsonIgnoreProperties({"usuario"})
     private Set<Publicacion> publicaciones;
+
+    public void insertarNuevoSeguidor(Seguidor seguidor){
+        seguidores.add(seguidor);
+    }
 
 }
 

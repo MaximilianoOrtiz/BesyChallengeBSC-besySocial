@@ -1,15 +1,13 @@
 package com.bczchallenge.socialbesy.controller;
 
 import com.bczchallenge.socialbesy.domain.dto.UsuarioDTO;
+import com.bczchallenge.socialbesy.domain.dto.UsuarioSiguiendoDTO;
 import com.bczchallenge.socialbesy.service.interfaces.SeguidorInterfaces;
 import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,12 +17,27 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usuarios")
-public class UsuarioResController {
+public class UsuarioRestController {
 
 
     private final UsuarioInterface usuarioServices;
     private final SeguidorInterfaces seguidorService;
 
+
+    @PostMapping("/{userID}/seguir/{userIDASeguir}")
+    ResponseEntity seguir(@PathVariable("userID") Integer userID, @PathVariable("userIDASeguir")Integer userIDASeguir){
+        try{
+            Map<String, Object> mensaje= new HashMap<String, Object>();
+
+            UsuarioSiguiendoDTO data= usuarioServices.seguir(userID,userIDASeguir);//TODO LLAMADA A LA IMPLEMENTACION;
+            mensaje.put("Success", true);
+            mensaje.put("Data", data);
+
+            return ResponseEntity.ok(mensaje);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 
     @GetMapping("/{userID}/seguidores/listado")
@@ -47,7 +60,6 @@ public class UsuarioResController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok(mensaje);
-
     }
 
     @GetMapping("/{userID}/sigo/listado")
@@ -55,7 +67,7 @@ public class UsuarioResController {
         try{
             Map<String, Object> mensaje= new HashMap<String, Object>();
 
-            List<UsuarioDTO> data= (List<UsuarioDTO>) seguidorService.getSeguidos(userID);//TODO LLAMADA A LA IMPLEMENTACION;
+            List<UsuarioDTO> data = (List<UsuarioDTO>) seguidorService.getSeguidos(userID);//TODO LLAMADA A LA IMPLEMENTACION;
             mensaje.put("Success", true);
             mensaje.put("Data", data);
 

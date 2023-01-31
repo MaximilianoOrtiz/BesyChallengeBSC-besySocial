@@ -8,8 +8,10 @@ public class CustomException {
     }
 
     public static class ImplementationCustomExceptions extends Exception{
-        public ImplementationCustomExceptions(Throwable cause){
+        public String mensaje;
+        public ImplementationCustomExceptions(String message,Throwable cause){
             super (cause);
+            this.mensaje= message;
 
         }
     }

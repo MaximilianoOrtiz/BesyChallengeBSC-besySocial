@@ -46,7 +46,7 @@ public class UsuarioImplementation implements UsuarioInterface {
                usuarioDTO.setSeguidores(seguidoresDTO);
            }
        }catch (Exception e){
-           throw new CustomException.ImplementationCustomExceptions(e.getCause());
+           throw new CustomException.ImplementationCustomExceptions("ERROR---> getListadoSeguidores("+idUsuario.toString()+"): ",e.getCause());
        }
         log.info("FIN --> getListaSeguidores("+idUsuario+"). response:"+ usuarioDTO);
         return usuarioDTO;
@@ -72,7 +72,7 @@ public class UsuarioImplementation implements UsuarioInterface {
             usuarioSiguiendoDTO.setSigue(siguiendo);
         }
         catch (Exception e){
-            throw new CustomException.ImplementationCustomExceptions(e.getCause());
+            throw new CustomException.ImplementationCustomExceptions("ERROR---> seguir("+userId.toString()+","+userIdSeguir+"): ",e.getCause());
         }
         log.info("FIN --> seguir.  Usuario:  ("+userId+"). sigue: " + userIdSeguir);
         return  usuarioSiguiendoDTO;

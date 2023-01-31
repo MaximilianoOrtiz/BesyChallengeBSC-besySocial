@@ -28,4 +28,11 @@ public class Seguidor {
     @JsonIgnoreProperties({"seguidores"})
     private Set<Usuario> seguidos;
 
+    @Override
+    public String toString() {
+        return "Seguidor{" +
+                "id=" + id +
+                ", nombreDeSeguidor='" + nombreDeSeguidor + '\'' +
+                '}';
+    }
 }

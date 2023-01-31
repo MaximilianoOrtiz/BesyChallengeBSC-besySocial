@@ -40,7 +40,8 @@ public  class Usuario implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "seguidor_id")
     )
 
-    @JsonIgnoreProperties({"seguidos"})
+   // @JsonIgnoreProperties({"seguidos"})
+    @JsonIgnore
     private Set<Seguidor> seguidores;
 
     @OneToMany(
@@ -48,12 +49,25 @@ public  class Usuario implements Serializable {
             fetch = FetchType.LAZY
     )
     @Column(name = "publicaciones")
-    @JsonIgnoreProperties({"usuario"})
+   // @JsonIgnoreProperties({"usuario"})
+    @JsonIgnore
     private Set<Publicacion> publicaciones;
 
     public void insertarNuevoSeguidor(Seguidor seguidor){
         seguidores.add(seguidor);
     }
 
+
+    public void insertarNuevaPublicacion(Publicacion publicacion){
+        publicaciones.add(publicacion);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombreDeUsuario='" + nombreDeUsuario + '\'' +
+                '}';
+    }
 }
 

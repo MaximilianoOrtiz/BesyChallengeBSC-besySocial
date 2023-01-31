@@ -23,4 +23,15 @@ public class Producto implements Serializable {
     private String color;
     private String observaciones;
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id=" + id +
+                ", nombreProducto='" + nombreProducto + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", marca='" + marca + '\'' +
+                ", color='" + color + '\'' +
+                ", observaciones='" + observaciones + '\'' +
+                '}';
+    }
 }

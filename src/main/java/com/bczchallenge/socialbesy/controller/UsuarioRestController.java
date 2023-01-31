@@ -1,7 +1,6 @@
 package com.bczchallenge.socialbesy.controller;
 
 import com.bczchallenge.socialbesy.domain.dto.DTOSeguidor;
-import com.bczchallenge.socialbesy.domain.dto.DTOSiguiendo;
 import com.bczchallenge.socialbesy.domain.dto.UsuarioDTO;
 import com.bczchallenge.socialbesy.domain.dto.UsuarioSiguiendoDTO;
 import com.bczchallenge.socialbesy.service.interfaces.SeguidorInterfaces;
@@ -11,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

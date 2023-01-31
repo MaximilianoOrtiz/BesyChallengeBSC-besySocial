@@ -1,6 +1,7 @@
 
 package com.bczchallenge.socialbesy.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,9 +21,9 @@ public class Publicacion implements Serializable {
     private Integer id;
     @Column(name = "fecha_alta")
     private String fechaAlta;
-    @OneToOne
-    private Categoria categoria;
-
+//    @OneToOne
+//    private Categoria categoria;
+    private Integer categoria;
     @OneToOne
     private Producto producto;
     private double precio;
@@ -43,11 +44,26 @@ public class Publicacion implements Serializable {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @Override
+    public String toString() {
+        return "Publicacion{" +
+                "id=" + id +
+                ", fechaAlta='" + fechaAlta + '\'' +
+                ", categoria=" + categoria +
+                ", producto=" + producto +
+                ", precio=" + precio +
+                ", precioDescuento=" + precioDescuento +
+                ", descuento=" + descuento +
+                ", enPromocion=" + enPromocion +
+                ", usuario=" + usuario +
+                '}';
+    }
 
-    @PrePersist
+
+  /*  @PrePersist
     private void antesDePersistir(){
         this.fechaAlta = String.valueOf(LocalDateTime.now());
     }
-
+*/
 }
 

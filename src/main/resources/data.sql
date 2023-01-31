@@ -35,7 +35,10 @@ insert into usuario_seguidor (usuario_id, seguidor_id) values
 (2,5),
 (1,4),
 (3,6),
-(3,7);
+(3,7),
+(2,2),
+(3,2);
+
 
 
 

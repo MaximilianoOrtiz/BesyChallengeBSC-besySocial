@@ -1,5 +1,7 @@
 package com.bczchallenge.socialbesy.domain.mapper;
 
+import com.bczchallenge.socialbesy.domain.dto.DTOSeguidor;
+import com.bczchallenge.socialbesy.domain.dto.DTOSiguiendo;
 import com.bczchallenge.socialbesy.domain.dto.UsuarioDTO;
 import com.bczchallenge.socialbesy.domain.models.Usuario;
 import org.mapstruct.Mapper;
@@ -15,5 +17,10 @@ public interface UsuarioMapper {
     })
     UsuarioDTO mapUsuario(Usuario usuario);
 
+    @Mappings({
+            @Mapping(source = "id", target = "id"),
+            @Mapping(source = "nombreDeUsuario", target= "nombre_Seguido")
+    })
+    DTOSiguiendo mapSeguidor(Usuario usuario);
 
 }

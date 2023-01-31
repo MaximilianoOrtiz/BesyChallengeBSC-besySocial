@@ -42,7 +42,7 @@ public class UsuarioImplementation implements UsuarioInterface {
                usuarioDTO = usuarioMapper.mapUsuario(usuario.get());
                List<DTOQuienMeSigue> seguidoresDTO = new ArrayList<DTOQuienMeSigue>();
                Iterable<Seguidor> seguidores = repository.findSeguidoresByIdUsuarios(idUsuario);
-               seguidores.forEach(seguidor -> seguidoresDTO.add(seguidorMapper.mapSeguidor(seguidor)));
+               seguidores.forEach(seguidor -> seguidoresDTO.add(seguidorMapper.mapQuienMeSigue(seguidor)));
                usuarioDTO.setSeguidores(seguidoresDTO);
            }
        }catch (Exception e){
@@ -68,7 +68,7 @@ public class UsuarioImplementation implements UsuarioInterface {
             usuarioSave.insertarNuevoSeguidor(seguidor);
             repository.save(usuarioSave);
             usuarioSiguiendoDTO = usuarioSiguiendoMapper.mapUsuario(usuarioSave);
-            DTOQuienMeSigue siguiendo = seguidorMapper.mapSeguidor(seguidor);
+            DTOQuienMeSigue siguiendo = seguidorMapper.mapQuienMeSigue(seguidor);
             usuarioSiguiendoDTO.setSigue(siguiendo);
         }
         catch (Exception e){

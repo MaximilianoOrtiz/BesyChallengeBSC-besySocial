@@ -1,5 +1,7 @@
 package com.bczchallenge.socialbesy.controller;
 
+import com.bczchallenge.socialbesy.domain.dto.DTOSeguidor;
+import com.bczchallenge.socialbesy.domain.dto.DTOSiguiendo;
 import com.bczchallenge.socialbesy.domain.dto.UsuarioDTO;
 import com.bczchallenge.socialbesy.domain.dto.UsuarioSiguiendoDTO;
 import com.bczchallenge.socialbesy.service.interfaces.SeguidorInterfaces;
@@ -67,28 +69,27 @@ public class UsuarioRestController {
         try{
             Map<String, Object> mensaje= new HashMap<String, Object>();
 
-            List<UsuarioDTO> data = (List<UsuarioDTO>) seguidorService.getSeguidos(userID);//TODO LLAMADA A LA IMPLEMENTACION;
+            DTOSeguidor data = seguidorService.getSeguidos(userID);//TODO LLAMADA A LA IMPLEMENTACION;
             mensaje.put("Success", true);
             mensaje.put("Data", data);
-
             return ResponseEntity.ok(mensaje);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+/*
     @GetMapping("/{userID}/sigo/listado?ordenar=?&desc=?")
     ResponseEntity aQuienSigo(@PathVariable("idUser") Integer idUser, @PathVariable("ordenar") String ordenar, @PathVariable("desc")String desc){
         Map<String, Object> mensaje= new HashMap<String, Object>();
         try{
-            List<UsuarioDTO> data= (List<UsuarioDTO>) seguidorService.getSeguidos(idUser);//TODO LLAMADA A LA IMPLEMENTACION;
+            DTOSeguidor data=  seguidorService.getSeguidos(idUser);//TODO LLAMADA A LA IMPLEMENTACION;
             mensaje.put("Success", true);
             mensaje.put("Data", data);
-
-
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok(mensaje);
     }
+
+ */
 }

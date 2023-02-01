@@ -56,6 +56,37 @@ public class UsuarioRestController {
         return ResponseEntity.ok(mensaje);
     }
 
+    @GetMapping("/{userID}/seguidores/listado?ordenar=?&desc=?")
+    ResponseEntity quienMeSigueByFiltro(@PathVariable("userID") Integer userID, @RequestParam String ordenar, @RequestParam String desc){
+        log.info("INICIO --> quienMeSigueByFiltro("+userID+","+ordenar+","+desc+")");
+        Map<String, Object> mensaje= new HashMap<String, Object>();
+        try{
+            UsuarioDTO data= usuarioServices.getListadosSeguidores(userID,ordenar,desc); //TODO LOGICA
+            mensaje.put("Success", true);
+            mensaje.put("Data", data);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        log.info("FIN --> quienMeSigueByFiltro()"+ mensaje.get("Success"));
+        return ResponseEntity.ok(mensaje);
+    }
+
+
+    @GetMapping("/{userID}/sigo/listado?ordenar=?&desc=?")
+    ResponseEntity aQuienSigoByFiltro(@RequestParam String ordenar, @RequestParam String desc, @PathVariable("userID") Integer userID){
+        log.info("INICIO --> aQuienSigoByFiltro("+userID+","+ordenar+","+desc+")");
+        Map<String, Object> mensaje= new HashMap<String, Object>();
+        try{
+            DTOSeguidor data=  seguidorService.getSeguidos(userID, ordenar, desc);
+            mensaje.put("Success", true);
+            mensaje.put("Data", data);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        log.info("FIN --> aQuienSigoByFiltro()"+ mensaje.get("Success"));
+        return ResponseEntity.ok(mensaje);
+    }
+
     @GetMapping("/{userID}/sigo/listado")
     ResponseEntity aQuienSigo(@PathVariable(value= "userID") Integer userID){
         log.info("INICIO --> aQuienSigo("+userID+")");
@@ -71,18 +102,5 @@ public class UsuarioRestController {
         return ResponseEntity.ok(mensaje);
     }
 
-    @GetMapping("/{userID}/sigo/listado?ordenar=?&desc=?")
-    ResponseEntity aQuienSigoByFiltro(@PathVariable("userID") Integer userID, @RequestParam String ordenar, @RequestParam String desc){
-        log.info("INICIO --> aQuienSigoByFiltro("+userID+","+ordenar+","+desc+")");
-        Map<String, Object> mensaje= new HashMap<String, Object>();
-        try{
-            DTOSeguidor data=  seguidorService.getSeguidos(userID, ordenar, desc);
-            mensaje.put("Success", true);
-            mensaje.put("Data", data);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        log.info("FIN --> aQuienSigoByFiltro()"+ mensaje.get("Success"));
-        return ResponseEntity.ok(mensaje);
-    }
+
 }

@@ -15,4 +15,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 
     @Query("select u.seguidores from Usuario u where u.id = ?1")
     Iterable<Seguidor> findSeguidoresByIdUsuarios(Integer idUsuario);
+
+    @Query("SELECT u.seguidores from Usuario u inner join u.seguidores s where u.id = ?1 order by s.nombreDeSeguidor asc")
+    Iterable<Seguidor> findSeguidoresByIdUsuarioOrderByName(Integer usuarioId);
 }

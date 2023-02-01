@@ -1,5 +1,6 @@
 package com.bczchallenge.socialbesy.domain.mapper;
 
+import com.bczchallenge.socialbesy.domain.dto.PublicacionDTO;
 import com.bczchallenge.socialbesy.domain.dto.PublicacionRequestDTO;
 import com.bczchallenge.socialbesy.domain.models.Producto;
 import com.bczchallenge.socialbesy.domain.models.Publicacion;
@@ -15,7 +16,7 @@ public interface PublicacionRequesMapper {
             @Mapping(source = "precio", target = "precio"),
             @Mapping(source = "categoria", target = "categoria")
     })
-    Publicacion publicacionMapper (PublicacionRequestDTO publicacionRequestDTO);
+    Publicacion publicacionMapper (PublicacionRequestDTO publicacionDTO);
 
 
     @Mappings({
@@ -27,7 +28,7 @@ public interface PublicacionRequesMapper {
             @Mapping(source = "detalle.observaciones", target = "observaciones")
 
     })
-    Producto  productorMapper(PublicacionRequestDTO publicacionRequestDTO);
+    Producto  productorMapper(PublicacionRequestDTO publicacionDTO);
 
 
     @Mappings({

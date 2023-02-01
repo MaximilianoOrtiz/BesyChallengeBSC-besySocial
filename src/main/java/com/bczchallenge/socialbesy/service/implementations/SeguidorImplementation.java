@@ -88,8 +88,6 @@ public class SeguidorImplementation implements SeguidorInterfaces {
                     log.info("ordeno la busqueda de forma desc");
                     Collections.reverse(seguidosDto);
                 }
-
-                response.setSeguidos(null);
                 log.info("Lista de seguidos vacia: "+ (response.getSeguidos() == null) );
                 response.setSeguidos(seguidosDto);
                 log.info("FIN --> getSeguidos(). response: " + (seguidosDto.get(0).getNombre_Seguido()));

@@ -2,6 +2,7 @@ package com.bczchallenge.socialbesy.service.implementations;
 
 import com.bczchallenge.socialbesy.domain.dto.*;
 import com.bczchallenge.socialbesy.domain.mapper.PromocioProductoMapper;
+import com.bczchallenge.socialbesy.domain.mapper.PublicacionMapper;
 import com.bczchallenge.socialbesy.domain.mapper.PublicacionProductoMapper;
 import com.bczchallenge.socialbesy.domain.mapper.PublicacionRequesMapper;
 import com.bczchallenge.socialbesy.domain.models.Producto;
@@ -12,11 +13,14 @@ import com.bczchallenge.socialbesy.repository.ProductoRepository;
 import com.bczchallenge.socialbesy.repository.PublicacionRepository;
 import com.bczchallenge.socialbesy.repository.UsuarioRepository;
 import com.bczchallenge.socialbesy.service.interfaces.PublicacionInterface;
+import com.bczchallenge.socialbesy.service.interfaces.UsuarioInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -29,6 +33,7 @@ public class PublicacionImplementation implements PublicacionInterface {
     private final UsuarioRepository usuarioRepository;
     private final PublicacionRequesMapper publicacionRequesMapper;
     private final PublicacionProductoMapper  publicacionProductoMapper;
+    private final PublicacionMapper publicacionMapper;
     private final PromocioProductoMapper promocioProductoMapper;
 
     @Override
@@ -70,9 +75,24 @@ public class PublicacionImplementation implements PublicacionInterface {
     }
 
     @Override
-    public Collection<Publicacion> listado(Integer userId) {
-        return null;
-
+    public DTOPublicacionResponse listado(Integer userId) throws CustomException.ImplementationCustomExceptions {
+        log.info("INICIO --> listado("+userId+")");
+        DTOPublicacionResponse response= new DTOPublicacionResponse();
+        try{
+            Optional<Usuario> usuario= usuarioRepository.findById(userId);
+            log.info("Usuario encontrado: "+ usuario.isPresent());
+            if(usuario.isPresent()){
+                List<Publicacion> publicaciones= (List<Publicacion>) publicacionRepository.findAllByUsuario(userId);
+                List<DTOPublicacionSinPromo> dtoPublicacionesSinPromo = new ArrayList<>();
+                publicaciones.forEach(publicacion -> dtoPublicacionesSinPromo.add(publicacionMapper.mapPublicacionSinPromo(publicacion)));
+                response.setUser_id(userId);
+                response.setPublicaciones(dtoPublicacionesSinPromo);
+            }
+        }catch (Exception e){
+            throw new CustomException.ImplementationCustomExceptions("ERROR ---> listado("+userId+")",e.getCause());
+        }
+        log.info("INICIO --> listado()");
+        return response;
     }
 
     @Override
@@ -98,7 +118,6 @@ public class PublicacionImplementation implements PublicacionInterface {
             publicacion.setUsuario(usuario.get());
             publicacion.setPrecioDescuento(precioDescuento);
             log.info("Publicacion con Producto: --> " +publicacion.toString());
-
             Publicacion publicacionSave = publicacionRepository.save(publicacion);
             log.info("Publicacion guardada: ---> " + publicacionSave.toString());
 

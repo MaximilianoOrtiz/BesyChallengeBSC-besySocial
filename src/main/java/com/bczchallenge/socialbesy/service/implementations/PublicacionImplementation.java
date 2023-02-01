@@ -84,17 +84,17 @@ public class PublicacionImplementation implements PublicacionInterface {
             if(usuario.isPresent()){
                 List<Publicacion> publicaciones= (List<Publicacion>) publicacionRepository.findAllByUsuario(userId);
                 log.info("publicaciones sin filtrar: "+publicaciones.size());
-                publicaciones.stream().filter(pub -> dateDiff(pub.getFechaAlta()) > 7)
-                        .collect(Collectors.toList());
+                publicaciones.stream().filter(pub -> (dateDiff(pub.getFechaAlta()) > 7))
+                        .collect(Collectors.toList()).forEach(p -> publicaciones.remove(p));
                 log.info("publicaciones filtradas: "+publicaciones.size());List<DTOPublicacionSinPromo> dtoPublicacionesSinPromo = new ArrayList<>();
                 publicaciones.forEach(publicacion -> dtoPublicacionesSinPromo.add(publicacionMapper.mapPublicacionSinPromo(publicacion)));
-//              response.setUser_id(userId);
+                response.setUser_id(userId);
                 response.setPublicaciones(dtoPublicacionesSinPromo);
             }
         }catch (Exception e){
             throw new CustomException.ImplementationCustomExceptions("ERROR ---> listado("+userId+")",e.getCause());
         }
-        log.info("INICIO --> listado()");
+        log.info("FIN --> listado()");
         return response;
     }
 
@@ -109,7 +109,7 @@ public class PublicacionImplementation implements PublicacionInterface {
                 List<Publicacion> publicaciones= (List<Publicacion>) publicacionRepository.findPromocionesByIdUsuario(userId);
                 log.info("publicaciones sin filtrar: "+publicaciones.size());
                 publicaciones.stream().filter(pub -> dateDiff(pub.getFechaAlta()) > 7)
-                        .collect(Collectors.toList());
+                        .collect(Collectors.toList()).forEach(p -> publicaciones.remove(p));
                 log.info("publicaciones filtradas: "+publicaciones.size());
                 List<DTOPublicacionPromocion> dtoPublicacionesPromo = new ArrayList<>();
                 publicaciones.forEach(publicacion -> dtoPublicacionesPromo.add(publicacionMapper.mapPublicacionPromo(publicacion)));

@@ -29,4 +29,13 @@ public interface PublicacionRequesMapper {
     })
     Producto  productorMapper(PublicacionRequestDTO publicacionRequestDTO);
 
+
+    @Mappings({
+            @Mapping(source = "fecha", target = "fechaAlta"),
+            @Mapping(source = "precio", target = "precio"),
+            @Mapping(source = "categoria", target = "categoria"),
+            @Mapping(source = "en_promocion", target = "enPromocion"),
+            @Mapping(source = "descuento", target = "descuento"),
+    })
+    Publicacion promocionMapper(PublicacionRequestDTO publicacionRequestDTO);
 }

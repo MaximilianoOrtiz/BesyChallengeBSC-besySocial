@@ -13,4 +13,7 @@ public class PublicacionRequestDTO {
     ProductoDTO detalle;
     Integer categoria;
     Double precio;
+    Boolean en_promocion;
+    Double descuento;
+
 }

@@ -1,6 +1,7 @@
 
 package com.bczchallenge.socialbesy.controller;
 
+import com.bczchallenge.socialbesy.domain.dto.DTOPromocioProducto;
 import com.bczchallenge.socialbesy.domain.dto.PublicacionProductoDTO;
 import com.bczchallenge.socialbesy.domain.dto.PublicacionRequestDTO;
 import com.bczchallenge.socialbesy.domain.models.Publicacion;
@@ -34,6 +35,24 @@ public class ProductoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PostMapping("/promocion")
+    ResponseEntity publicarPromocion(@RequestBody PublicacionRequestDTO publicacion){
+        try{
+            Map<String, Object>mensaje= new HashMap<String, Object>();
+            DTOPromocioProducto data = this.publicacionInterface.publicarPromocion(publicacion);
+            //TODO
+            // mensaje.put("publicacion_id", data.getId());
+            // TODO
+            //  mensaje.put("Data", data.getPrecioDescuento);
+            mensaje.put("Success", Boolean.TRUE);
+            mensaje.put("Data", data);
+            return ResponseEntity.ok(mensaje);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 /*
     @GetMapping("/{userID}/listado")
     ResponseEntity listado(@PathVariable("userID") Integer userId){
@@ -44,21 +63,6 @@ public class ProductoController {
             mensaje.put("userId", userId);
             mensaje.put("Data", data);
 
-            return ResponseEntity.ok(mensaje);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
-    @PostMapping("/promocion")
-    ResponseEntity promocion(@RequestBody Publicacion publicacion){
-        try{
-            Map<String, Object>mensaje= new HashMap<String, Object>();
-            Publicacion data= this.publicacionInterface.promocion(publicacion);
-            //TODO
-            // mensaje.put("publicacion_id", data.getId());
-            // TODO
-            //  mensaje.put("Data", data.getPrecioDescuento);
             return ResponseEntity.ok(mensaje);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

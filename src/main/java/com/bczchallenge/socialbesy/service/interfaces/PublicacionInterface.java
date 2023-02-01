@@ -1,5 +1,6 @@
 package com.bczchallenge.socialbesy.service.interfaces;
 
+import com.bczchallenge.socialbesy.domain.dto.DTOPromocioProducto;
 import com.bczchallenge.socialbesy.domain.dto.PublicacionProductoDTO;
 import com.bczchallenge.socialbesy.domain.dto.PublicacionRequestDTO;
 import com.bczchallenge.socialbesy.domain.models.Publicacion;
@@ -12,5 +13,5 @@ public interface PublicacionInterface {
 
     Collection<Publicacion> listado(Integer userId);
 
-    Publicacion promocion(Publicacion publicacion);
+    DTOPromocioProducto publicarPromocion(PublicacionRequestDTO publicacionDTO) throws CustomException.ImplementationCustomExceptions;
 }

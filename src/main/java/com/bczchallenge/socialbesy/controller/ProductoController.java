@@ -45,7 +45,6 @@ public class ProductoController {
             //  mensaje.put("Data", data.getPrecioDescuento);
             mensaje.put("Success", Boolean.TRUE);
             mensaje.put("Data", data);
-
             return ResponseEntity.ok(mensaje);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -56,23 +55,34 @@ public class ProductoController {
 
     @GetMapping("/{userID}/listado")
     ResponseEntity listado(@PathVariable("userID") Integer userId){
+        log.info("INICIO --> listado("+userId+")");
+        Map<String, Object>mensaje= new HashMap<String, Object>();
         try{
-            Map<String, Object>mensaje= new HashMap<String, Object>();
 
             DTOPublicacionResponse data= this.publicacionInterface.listado(userId);
             mensaje.put("userId", userId);
             mensaje.put("Data", data);
-
-            return ResponseEntity.ok(mensaje);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+        log.info("INICIO --> listado() response: "+ mensaje.get("Data"));
+        return ResponseEntity.ok(mensaje);
     }
 
-    @GetMapping("/promoción/{userID}/listado")
-    ResponseEntity promocion(@PathVariable("userId")Integer userId){
-        return null;
-    }
+    @GetMapping("/promocion/{userID}/listado")
+    ResponseEntity promocion(@PathVariable("userID") Integer userID){
+        log.info("INICIO --> promocion("+userID+")");
+        Map<String, Object>mensaje= new HashMap<String, Object>();
+        try{
+
+            DTOPromocionResponse data= this.publicacionInterface.promocion(userID);
+            mensaje.put("userId", userID);
+            mensaje.put("Data", data);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        log.info("INICIO --> promocion() response: "+ mensaje.get("Data"));
+        return ResponseEntity.ok(mensaje);    }
 
 
 }

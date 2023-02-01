@@ -18,10 +18,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -83,9 +83,12 @@ public class PublicacionImplementation implements PublicacionInterface {
             log.info("Usuario encontrado: "+ usuario.isPresent());
             if(usuario.isPresent()){
                 List<Publicacion> publicaciones= (List<Publicacion>) publicacionRepository.findAllByUsuario(userId);
-                List<DTOPublicacionSinPromo> dtoPublicacionesSinPromo = new ArrayList<>();
+                log.info("publicaciones sin filtrar: "+publicaciones.size());
+                publicaciones.stream().filter(pub -> dateDiff(pub.getFechaAlta()) > 7)
+                        .collect(Collectors.toList());
+                log.info("publicaciones filtradas: "+publicaciones.size());List<DTOPublicacionSinPromo> dtoPublicacionesSinPromo = new ArrayList<>();
                 publicaciones.forEach(publicacion -> dtoPublicacionesSinPromo.add(publicacionMapper.mapPublicacionSinPromo(publicacion)));
-                response.setUser_id(userId);
+//              response.setUser_id(userId);
                 response.setPublicaciones(dtoPublicacionesSinPromo);
             }
         }catch (Exception e){
@@ -94,6 +97,32 @@ public class PublicacionImplementation implements PublicacionInterface {
         log.info("INICIO --> listado()");
         return response;
     }
+
+    @Override
+    public DTOPromocionResponse promocion(Integer userId) throws CustomException.ImplementationCustomExceptions {
+        log.info("INICIO --> listado("+userId+")");
+        DTOPromocionResponse response= new DTOPromocionResponse();
+        try{
+            Optional<Usuario> usuario= usuarioRepository.findById(userId);
+            log.info("Usuario encontrado: "+ usuario.isPresent());
+            if(usuario.isPresent()){
+                List<Publicacion> publicaciones= (List<Publicacion>) publicacionRepository.findPromocionesByIdUsuario(userId);
+                log.info("publicaciones sin filtrar: "+publicaciones.size());
+                publicaciones.stream().filter(pub -> dateDiff(pub.getFechaAlta()) > 7)
+                        .collect(Collectors.toList());
+                log.info("publicaciones filtradas: "+publicaciones.size());
+                List<DTOPublicacionPromocion> dtoPublicacionesPromo = new ArrayList<>();
+                publicaciones.forEach(publicacion -> dtoPublicacionesPromo.add(publicacionMapper.mapPublicacionPromo(publicacion)));
+                response.setUser_id(userId);
+                response.setPublicaciones(dtoPublicacionesPromo);
+            }
+        }catch (Exception e){
+            throw new CustomException.ImplementationCustomExceptions("ERROR ---> listado("+userId+")",e.getCause());
+        }
+        log.info("INICIO --> listado()");
+        return response;
+    }
+
 
     @Override
     public DTOPromocioProducto publicarPromocion(PublicacionRequestDTO publicacionDTO) throws CustomException.ImplementationCustomExceptions { log.info("INICIO --> publicar("+publicacionDTO.getUserID()+")");
@@ -133,5 +162,23 @@ public class PublicacionImplementation implements PublicacionInterface {
         }
         log.info("FIN --> publicarPromocion("+publicacionDTO.getUserID()+")");
         return response;
+    }
+
+
+    private int dateDiff(String fecha) {
+        log.info("INICIO --> dateDiff("+fecha+")");
+        int result= 0;
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date dfecha = format.parse(fecha);
+            long today = new Date().getTime();
+            long date = dfecha.getTime();
+            long timeDiff = Math.abs(today - date);
+            result= (int) (timeDiff/(1000*60*60*24));
+        }catch (Exception e){
+            log.info("Error --> dateDiff()"+ e.getMessage()+ e.getCause().toString());
+        }
+        log.info("FIN --> dateDiff(), result:"+ result);
+        return result;
     }
 }
